@@ -1,0 +1,38 @@
+/*----------------------------------------
+ * Visibility
+ *----------------------------------------*/
+.hide {
+    display: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.show {
+    display: inherit;
+}
+
+.inline {
+    display: inline-block;
+}
+
+@each $name, $size in $mediaQueries {
+    .show-#{$name}{
+        display: none;
+    }
+
+    @media (max-width: $size) {
+        .hide-#{$name}:not(.show){
+            display: none;
+        }
+
+        .show-#{$name}{
+            display: inherit;
+        }
+
+        .block-#{$name}{
+            display: block;
+        }
+    }
+}

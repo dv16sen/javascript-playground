@@ -1,0 +1,36 @@
+/*----------------------------------------
+ * Definition Table
+ *----------------------------------------*/
+.definition-table {
+    border: 1px solid $tableSecondary;
+    border-radius: $divider5;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    tbody {
+        tr {
+            td {
+                padding: 12px 14px;
+                border-top: 1px solid $tableSecondary;
+
+                &:first-child {
+                    font-weight: bold;
+                    border-right: 1px solid $tableSecondary;
+                    background-color: $tablePrimary;
+                }
+            }
+
+            &:first-child {
+                td {
+                    border-top: none;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $mediaSmall) {
+    .definition-table.collapse {
+        @include stackedTable();
+    }
+}

@@ -1,0 +1,47 @@
+/*----------------------------------------
+ * List Table
+ *----------------------------------------*/
+.list-table {
+    &.clickable {
+        @include clickable();
+    }
+
+    &.striped {
+        @include striped();
+    }
+
+    td {
+        padding: 10px 10px 0 0;
+        white-space: nowrap;
+    }
+
+    tr  {
+        > td {
+            &:first-child {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+@media (max-width: $mediaSmall) {
+    .list-table {
+        margin: 0 auto;
+        text-align: center;
+
+        tr {
+            display: block;
+            width: auto;
+
+            td:first-child {
+                border-bottom: 1px solid rgba(255, 255, 255, .1);
+            }
+        }
+
+        td {
+            width: 100%;
+            display: block;
+            white-space: normal;
+        }
+    }
+}

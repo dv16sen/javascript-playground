@@ -1,0 +1,35 @@
+/*----------------------------------------
+ * Message
+ *----------------------------------------*/
+.message {
+    position: relative;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: 1px solid lightToDark($gray);
+    background-color: $gray;
+    transition: .1s linear;
+    font-weight: lighter;
+
+    .heading {
+        font-weight: normal;
+        font-size: $heading;
+        margin-bottom: 5px;
+    }
+
+    > * {
+        margin-bottom: 0;
+    }
+}
+
+@each $name, $color in $darkColors {
+    .message.#{$name} {
+        border: 1px solid rgba($color, .5);
+        background-color: glassToLight($color);
+        color: darkToDarker($color);
+
+        &.loading:not(.dark):after {
+            border-left-color: darkToDarker($color);
+            border-bottom-color: darkToDarker($color);
+        }
+    }
+}

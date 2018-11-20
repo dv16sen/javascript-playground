@@ -1,0 +1,41 @@
+/*----------------------------------------
+ * Global
+ *----------------------------------------*/
+*,
+html,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    font-family: $primaryFont;
+
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        cursor: pointer;
+        border-radius: 5px;
+        background: rgba(0,0,0,.25);
+        -webkit-transition: color .2s ease;
+        transition: color .2s ease;
+    }
+
+    body ::-webkit-scrollbar-track {
+        background: rgba(0,0,0,.1);
+        border-radius: 0;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+hr {
+    border-top: 1px solid $gray;
+}

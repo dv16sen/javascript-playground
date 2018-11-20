@@ -1,0 +1,53 @@
+.tooltip-container {
+    position: relative;
+
+    &:hover .tooltip:not(.controlled) {
+        display: block;
+    }
+
+    .tooltip {
+        position: absolute;
+        z-index: 999;
+
+        &.loading:after {
+            @include setLoadingSize("15px", "2px");
+        }
+
+        &:not(.controlled){
+            display: none;
+        }
+
+        &.top {
+            top: 0;
+            transform: translateY(-115%);
+        }
+
+        &.left {
+            left: 0;
+        }
+
+        &.right {
+            right: 0;
+        }
+
+        &.bottom {
+            bottom: 0;
+            transform: translateY(115%);
+        }
+
+        &.center {
+            left: 50%;
+
+            &.top {
+                transform: translate(-50%, -115%);
+            }
+
+            &.bottom {
+                transform: translate(-50%, 115%);
+            }
+        }
+
+        padding: 8px;
+        font-size: 12px;
+    }
+}

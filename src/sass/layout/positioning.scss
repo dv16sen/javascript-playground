@@ -1,0 +1,35 @@
+/*----------------------------------------
+ * Positioning
+ *----------------------------------------*/
+@mixin fixed(){
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    &.scrollable {
+        max-height: 100vh;
+        overflow: auto;
+    }
+}
+
+.fixed {
+    @include fixed();
+}
+
+.static {
+    position: static;
+}
+
+@each $name, $query in $mediaQueries {
+    @media (max-width: $query) {
+        .fixed-#{$name} {
+            @include fixed();
+        }
+
+        .static-#{$name}{
+            position: static;
+        }
+    }
+}
+

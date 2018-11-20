@@ -1,0 +1,66 @@
+$tablePrimary: rgba(0, 0, 50, .03);
+$tableSecondary: #E9E9E9;
+
+@mixin tableIcon($icon){
+    font-family: $fontAwesome;
+    font-weight: 900;
+    color: darken($tableSecondary, 25%);
+    content: $icon;
+    display: inline-block;
+    height: 1em;
+    width: auto;
+    margin: 0 0 0 .5em;
+}
+
+@mixin sortable(){
+    th {
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+            background: rgba(0, 0, 0, .06);
+        }
+
+        &.sortable:after {
+            @include tableIcon("\f0dc");
+        }
+
+        &.desc:after {
+            @include tableIcon("\f0dd");
+        }
+
+        &.asc:after {
+            @include tableIcon("\f0de");
+        }
+
+        &.no-sort {
+            cursor: default;
+
+            &:hover {
+                background-color: $tablePrimary;
+            }
+        }
+    }
+}
+
+@mixin clickable(){
+    tbody tr {
+        cursor: pointer;
+
+        &:hover {
+            background: rgba(0, 0, 0, .04);
+        }
+    }
+}
+
+@mixin striped(){
+    tr:nth-child(2n) td {
+        background-color: $tablePrimary;
+    }
+}
+
+@import "stacked-table";
+@import "table";
+@import "definition-table";
+@import "list-table";
+@import "colored-tables";

@@ -1,0 +1,26 @@
+/*----------------------------------------
+ * Size
+ *----------------------------------------*/
+$sizeList: (0 25 50 75 100);
+
+@for $i from 1 through length($sizeList) {
+    .h-#{nth($sizeList, $i)}{
+        min-height: #{nth($sizeList, $i)}vh;
+    }
+
+    .w-#{nth($sizeList, $i)}{
+        width: unquote("#{nth($sizeList, $i)}%");
+    }
+
+    @each $name, $query in $mediaQueries {
+        @media (max-width: $query) {
+            .w-#{nth($sizeList, $i)}-#{$name}{
+                width: unquote("#{nth($sizeList, $i)}%");
+            }
+
+            .h-#{nth($sizeList, $i)}-#{$name}{
+                min-height: #{nth($sizeList, $i)}vh!important;
+            }
+        }
+    }
+}

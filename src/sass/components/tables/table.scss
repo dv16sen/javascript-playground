@@ -1,0 +1,48 @@
+/*----------------------------------------
+ * Table
+ *----------------------------------------*/
+.table {
+    border: 1px solid $tableSecondary;
+    border-collapse: separate;
+    border-radius: $divider5;
+    border-spacing: 0;
+    margin: 0;
+    text-align: center;
+
+    &.sortable {
+        @include sortable();
+    }
+
+    &.clickable {
+        @include clickable();
+    }
+
+    &.striped {
+        @include striped();
+    }
+
+    th {
+        background-color: $tablePrimary;
+        font-weight: bold;
+        border-bottom: 1px solid $tableSecondary;
+    }
+
+    td, th {
+        padding: 12px 14px;
+        border-right: 1px solid $tableSecondary;
+    }
+
+    tbody tr td:last-child {
+        border-right: none;
+    }
+
+    thead th:last-child {
+        border-right: none;
+    }
+}
+
+@media (max-width: $mediaSmall) {
+    .table.collapse {
+        @include stackedTable();
+    }
+}

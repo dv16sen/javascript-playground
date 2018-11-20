@@ -1,0 +1,52 @@
+body {
+    font-size: $text;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: $divider3;
+}
+
+@for $i from 1 through length($headingList) {
+    h#{$i}{
+        font-size: #{nth($headingList, $i)};
+    }
+}
+
+p {
+    margin-bottom: $divider4;
+}
+
+p, span, ul, ol, code, pre {
+    margin-top: 0;
+
+    a {
+        color: darken($bPrimary, 10%);
+    }
+}
+
+table {
+    font-size: $h6;
+}
+
+ul, ol {
+    padding-left: 20px;
+
+    ul, ol {
+        margin-bottom: 0;
+    }
+
+    li {
+        line-height: 25px;
+    }
+}
+
+a {
+    @include standardHoverEffect();
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        color: #000;
+    }
+}

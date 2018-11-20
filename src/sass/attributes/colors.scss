@@ -1,0 +1,86 @@
+/*----------------------------------------
+ * Colors
+ *----------------------------------------*/
+@each $name, $color in $colors {
+    .color-#{$name}{
+        color: $color;
+    }
+}
+
+@each $name, $color in $colors {
+    .bg-color-#{$name}{
+        background-color: $color;
+
+        &.glass {
+            background-color: glassColor($color);
+        }
+
+        &.dark {
+            background-color: darkToDarker($color);
+            color: #FFF;
+
+            &.glass {
+                background-color: glassColor(darkToDarker($color));
+            }
+        }
+
+        &.light {
+            background-color: darkToLight($color, $name);
+            color: #000;
+
+            &.glass {
+                background-color: glassColor(darkToLight($color, $name));
+            }
+        }
+    }
+}
+
+@each $name, $color in $darkColors {
+    .#{$name}{
+        background-color: $color;
+        color: #FFF;
+
+        &.glass {
+            background-color: glassColor($color);
+            color: #FFF;
+        }
+
+        &.dark {
+            background-color: darkToDarker($color);
+            color: #FFF;
+
+            &.glass {
+                background-color: glassColor(darkToDarker($color));
+            }
+        }
+
+        &.light {
+            background-color: darkToLight($color, $name);
+            color: #000;
+
+            &.glass {
+                background-color: glassColor(darkToLight($color, $name));
+            }
+        }
+    }
+}
+
+@each $name, $color in $lightColors {
+    .#{$name}{
+        background-color: $color;
+        color: #000;
+
+        &.dark {
+            background-color: lightToDark($color, $name);
+            color: #000;
+
+            &.glass {
+                background-color: glassColor(lightToDark($color, $name));
+            }
+        }
+
+        &.glass {
+            background-color: glassColor($color);
+        }
+    }
+}

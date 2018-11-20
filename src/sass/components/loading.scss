@@ -1,0 +1,48 @@
+/*----------------------------------------
+ * Loading
+ *----------------------------------------*/
+@mixin setLoadingSize($size: "30px", $borderWidth: "3px"){
+    left: calc(50% - (#{$size} / 2));
+    top: calc(50% - (#{$size}/ 2));
+    width: unquote($size);
+    height: unquote($size);
+    border-width: unquote($borderWidth);
+}
+
+.loading {
+    position: relative;
+    content: "";
+    cursor: not-allowed;
+    user-select: none;
+    color: transparent!important;
+
+    > * {
+        opacity: 0!important;
+    }
+
+    &:after {
+        position: absolute;
+        @include setLoadingSize();
+        animation: loader-spin .5s infinite linear;
+        border: 2px solid #000;
+        border-radius: 100%;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        content: "";
+        display: block;
+    }
+}
+
+@each $name, $color in $darkColors {
+    .loading.#{$name}{
+        &:after {
+            border-left-color: #FFF;
+            border-bottom-color: #FFF;
+        }
+
+        &.light:after {
+            border-left-color: #000;
+            border-bottom-color: #000;
+        }
+    }
+}

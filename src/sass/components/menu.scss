@@ -1,0 +1,128 @@
+/*----------------------------------------
+ * Menu
+ *----------------------------------------*/
+.menu {
+    position: relative;
+    display: flex;
+    font-weight: lighter;
+    flex-wrap: wrap;
+
+    &.fixed {
+        &:not(.inline){
+            right: 0;
+        }
+    }
+
+    .menu-item {
+        cursor: pointer;
+        font-weight: lighter;
+        padding: 16px;
+        margin: 0;
+
+        &:hover,
+        &:active,
+        &.active {
+            background-color: #eee;
+        }
+
+        &.effectless {
+            cursor: default;
+
+            &:hover,
+            &:active {
+                background-color: inherit!important;
+            }
+        }
+
+        &.grow {
+            flex-grow: 1;
+        }
+    }
+
+    &.vertical {
+        flex-direction: column;
+        flex-wrap: initial;
+    }
+
+    &.inline {
+        display: inline-flex;
+    }
+
+    > a {
+        @extend .menu-item;
+    }
+
+    a:hover {
+        color: inherit;
+    }
+
+    &.right {
+        flex-grow: 1;
+        justify-content: flex-end;
+
+        &.vertical {
+            text-align: right;
+        }
+    }
+
+    &.center {
+        flex-grow: 1;
+        justify-content: center;
+
+        &.vertical {
+            text-align: center;
+        }
+    }
+
+    @each $name, $query in $mediaQueries {
+        @media (max-width: $query) {
+            &.vertical-#{$name}{
+                flex-direction: column;
+            }
+
+            &.inline-#{$name} {
+                display: inline-flex;
+            }
+        }
+    }
+}
+
+@each $name, $color in $darkColors {
+    .menu.#{$name} {
+        > a:hover,
+        > a:active,
+        > a.active,
+        .menu-item:hover,
+        .menu-item:active,
+        .menu-item.active {
+            background-color: darkHover($color, $name);
+        }
+
+        &.light {
+            background-color: lighten($color, 10%);
+            color: #FFF;
+
+            > a:hover,
+            > a:active,
+            > a.active,
+            .menu-item:hover,
+            .menu-item:active,
+            .menu-item.active {
+                background-color: lighten($color, 5%);
+            }
+        }
+    }
+}
+
+@each $name, $color in $lightColors {
+    .menu.#{$name} {
+        > a:hover,
+        > a:active,
+        > a.active,
+        .menu-item:hover,
+        .menu-item:active,
+        .menu-item.active {
+            background-color: lightHover($color, $name);
+        }
+    }
+}

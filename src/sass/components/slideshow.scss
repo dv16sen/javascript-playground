@@ -1,0 +1,42 @@
+/*----------------------------------------
+ * Slideshow
+ *----------------------------------------*/
+.slideshow {
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+
+    > *:first-child {
+        margin-right: 15px;
+    }
+
+    > *:last-child {
+        margin-left: 15px;
+        justify-content: flex-end;
+    }
+
+    > *:first-child,
+    > *:last-child {
+        display: flex;
+        align-items: center;
+        font-size: $display4;
+        cursor: pointer;
+        z-index: 1;
+        @include standardHoverEffect();
+
+        &:hover {
+            color: $primary;
+        }
+
+        &.disabled {
+            cursor: default;
+
+            &:hover {
+                color: inherit;
+            }
+        }
+    }
+}

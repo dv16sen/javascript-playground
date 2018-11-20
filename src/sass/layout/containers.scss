@@ -1,0 +1,8 @@
+/*----------------------------------------
+ * Containers
+ *----------------------------------------*/
+@for $i from 1 through length($wrapperList) {
+    .container-#{$i}{
+        max-width: #{nth($wrapperList, $i)};
+    }
+}

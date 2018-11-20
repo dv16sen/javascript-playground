@@ -1,0 +1,73 @@
+/*----------------------------------------
+ * Inputs
+ *----------------------------------------*/
+@mixin allInputs($elementState){
+    input[type=password]#{$elementState},
+    input[type=email]#{$elementState},
+    input[type=url]#{$elementState},
+    input[type=date]#{$elementState},
+    input[type=month]#{$elementState},
+    input[type=time]#{$elementState},
+    input[type=datetime]#{$elementState},
+    input[type=datetime-local]#{$elementState},
+    input[type=week]#{$elementState},
+    input[type=tel]#{$elementState},
+    input[type=color]#{$elementState},
+    input[type=number]#{$elementState},
+    input[type=search]#{$elementState},
+    input[type=text]#{$elementState},
+    select#{$elementState},
+    textarea#{$elementState} {
+        @content;
+    }
+}
+
+label {
+    display: block;
+    margin: 0 0 3px 0;
+    font-weight: bold;
+}
+
+@include allInputs(''){
+    margin: 0 0 15px 0;
+    outline: 0;
+    padding: 10px 14px;
+    border: 1px solid rgba(34,36,38,.15);
+    border-radius: 5px;
+    box-shadow: 0 0 0 0 transparent inset;
+    transition: color .1s ease,border-color .1s ease;
+
+    &:not(.inline){
+        width: 100%;
+    }
+
+    &::-webkit-input-placeholder {
+        color: rgba(0, 0, 0, .4);
+    }
+
+    &:last-child {
+        margin: 0;
+    }
+
+    &:focus {
+        border-color: #85b7d9;
+    }
+
+    &.error {
+        background: #fff6f6;
+        border-color: #e0b4b4;
+        color: #9f3a38;
+
+        &::-webkit-input-placeholder {
+            color: rgba(#9f3a38, .75);
+        }
+
+        &:focus {
+            border-color: darken(#e0b4b4, 10%);
+        }
+    }
+
+    &:disabled {
+        background-color: #f6f6f6;
+    }
+}

@@ -1,0 +1,94 @@
+/*----------------------------------------
+ * Android Checkbox
+ *----------------------------------------*/
+.android-checkbox {
+    display: inline-block;
+    user-select: none;
+    cursor: pointer;
+    margin-bottom: 0;
+
+    input[type=checkbox]:checked + .inner {
+        border-color: #20C2E0;
+
+        svg path {
+            fill: #20C2E0;
+        }
+
+        svg polyline {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    &:hover .inner svg path {
+        stroke-dashoffset: 0;
+    }
+
+    .inner {
+        position: relative;
+        top: 2px;
+        margin-right: 8px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #C8CCD4;
+        border-radius: 3px;
+
+        svg {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+
+            path {
+                fill: none;
+                stroke: #20C2E0;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-dasharray: 71px;
+                stroke-dashoffset: 71px;
+                transition: all 0.6s ease;
+            }
+
+            polyline {
+                fill: none;
+                stroke: #FFF;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-dasharray: 18px;
+                stroke-dashoffset: 18px;
+                transition: all 0.3s ease;
+            }
+        }
+    }
+
+    > span {
+        pointer-events: none;
+        vertical-align: middle;
+    }
+
+    input[type=checkbox] {
+        position: absolute;
+        z-index: -1;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+@each $name, $color in $darkColors {
+    .android-checkbox.#{$name}{
+        background-color: inherit;
+
+        input[type=checkbox]:checked + .inner {
+            border-color: $color;
+
+            svg path {
+                fill: $color;
+            }
+        }
+
+        .inner svg path {
+            stroke: $color;
+        }
+    }
+}

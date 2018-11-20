@@ -1,0 +1,60 @@
+/*----------------------------------------
+ * Bouncing Checkbox
+ *----------------------------------------*/
+@mixin leftCenteredCheckbox(){
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 20px;
+    height: 20px;
+}
+
+@each $name, $color in $darkColors {
+    .bouncing-checkbox .checkbox.#{$name}{
+        background-color: inherit;
+
+        &:before {
+            color: darken($color, 10%);
+        }
+    }
+}
+
+.bouncing-checkbox {
+    position: relative;
+    display: inline-block;
+    min-height: 20px;
+    padding-left: 30px;
+
+    .checkbox {
+        @include leftCenteredCheckbox();
+        border: 1px solid #777;
+        border-radius: 2px;
+        box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.01);
+
+        &:before {
+            font-family: $fontAwesome;
+            font-weight: 900;
+            position: absolute;
+            top: -2px;
+            font-size: 19px;
+            color: darken($primary, 10%);;
+        }
+    }
+
+    input[type=checkbox]{
+        @include leftCenteredCheckbox();
+        cursor: pointer;
+        z-index: 2;
+        opacity: 0;
+    }
+
+    input[type=checkbox]:checked + .checkbox:before {
+        content: "\f00c";
+        animation: checkbox-bounce 250ms ease-in;
+    }
+
+    > label {
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,25 @@
+progress {
+    display: block;
+    padding: 0;
+    width: 100%;
+    height: 20px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &[value] {
+        &::-webkit-progress-bar {
+            background-color: #D6D6D6;
+        }
+
+        &::-webkit-progress-value {
+            background-color: $primary;
+        }
+    }
+}
+
+@each $name, $color in $darkColors {
+    progress[value].#{$name}::-webkit-progress-value {
+        background-color: $color;
+    }
+}

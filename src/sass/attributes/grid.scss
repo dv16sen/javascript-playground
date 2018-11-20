@@ -1,0 +1,102 @@
+/*----------------------------------------
+ * Grid
+ *----------------------------------------*/
+@mixin allMedia($class, $i){
+    #{$class}-#{$i}{
+        @content
+    }
+
+    @media(min-width: $mediaXSmall){
+        #{$class}-xs-#{$i}{
+            @content
+        }
+    }
+    
+    @media(min-width: $mediaSmall){
+        #{$class}-sm-#{$i}{
+            @content
+        }
+    }
+    
+    @media(min-width: $mediaMedium){
+        #{$class}-md-#{$i}{
+            @content
+        }
+    }
+    
+    @media(min-width: $mediaLarge){
+        #{$class}-lg-#{$i}{
+            @content
+        }
+    }
+}
+
+.grid {
+    display: grid;
+}
+
+.inline-grid {
+    display: inline-grid;
+}
+
+.subgrid {
+    display: subgrid;
+}
+
+.gap-standard {
+    grid-gap: $divider3;
+}
+
+.gap-small {
+    grid-gap: $divider4;
+}
+
+.grid-auto-row {
+    grid-auto-flow: row;
+}
+
+.grid-auto-row-dense {
+    grid-auto-flow: row dense;
+}
+
+.grid-auto-column {
+    grid-auto-flow: column;
+}
+
+.grid-auto-column-dense {
+    grid-auto-flow: column dense;
+}
+
+@for $i from 1 through 16 {
+    @include allMedia('.grid-col', $i){
+        grid-template-columns: unquote(repeat('1fr ', $i));
+    }
+    
+    @include allMedia('.grid-row', $i){
+        grid-template-rows: unquote(repeat('1fr ', $i));
+    }
+
+    @include allMedia('.col-span', $i){
+        grid-column-end: span $i;
+    }
+    
+    @include allMedia('.row-span', $i){
+        grid-row-end: span $i;
+    }
+    
+    @include allMedia('.col-start', $i){
+        grid-column-start: $i;
+    }
+    
+    @include allMedia('.col-end', $i){
+        grid-column-end: $i;
+    }
+    
+    @include allMedia('.row-start', $i){
+        grid-row-start: $i;
+    }
+    
+    @include allMedia('.row-end', $i){
+        grid-row-end: $i;
+    }
+}

@@ -1,0 +1,23 @@
+/*----------------------------------------
+ * Source Container
+ *----------------------------------------*/
+.source-container {
+    position: relative;
+    padding-bottom: 48px;
+
+    #brace-editor {
+        margin: 15px 0;
+    }
+
+    .source-container-menu {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        max-height: 42px;
+        font-size: $h4;
+
+        .menu-item {
+            padding: 8px 12px;
+        }
+    }
+}

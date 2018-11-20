@@ -1,0 +1,101 @@
+@each $name, $color in $darkColors {
+    table.#{$name}{
+        background-color: initial;
+        border-color: rgba($color, .1);
+
+        &.light {
+            background-color: initial;
+        }
+
+        th {
+            background-color: rgba($color, .25);
+            border-color: inherit;
+        }
+
+        td {
+            background-color: rgba($color, .15);
+            border-color: inherit;
+        }
+
+        &.definition-table {
+            td {
+                border-color: rgba($color, .1)!important;
+
+                &:first-child {
+                    background-color: rgba($color, .25);
+                }
+            }
+        }
+
+        &.table.collapse,
+        &.stacked-table  {
+            tr {
+                padding: 0;
+            }
+
+            tr:nth-child(2n) td {
+                background-color: rgba($color, .15);
+            }
+
+            tr td:first-child {
+                background-color: rgba($color, .25);
+            }
+        }
+
+        &.striped tr:nth-child(2n) td {
+            background-color: rgba($color, .1);
+        }
+
+        &.sortable th:hover {
+            background-color: rgba($color, .3);
+        }
+
+        &:not(.light) {
+            color: #FFF;
+            border-color: rgba($color, .5);
+
+            tr:hover {
+                background-color: darken($color, 25%);
+            }
+
+            th {
+                background-color: darken($color, 8%);
+                border-color: inherit;
+            }
+
+            td {
+                background-color: rgba($color, .95);
+                border-color: inherit;
+            }
+
+            &.striped tr:nth-child(2n) td {
+                background-color: rgba($color, .875);
+            }
+
+            &.sortable th:hover {
+                background-color: darken($color, 13%);
+            }
+
+            &.table.collapse,
+            &.stacked-table  {
+                tr:nth-child(2n) td {
+                    background-color: $color;
+                }
+
+                tr td:first-child {
+                    background-color: darken($color, 8%);
+                }
+            }
+
+            &.definition-table {
+                td {
+                    border-color: rgba($color, .5)!important;
+
+                    &:first-child {
+                        background-color: darken($color, 8%);
+                    }
+                }
+            }
+        }
+    }
+}

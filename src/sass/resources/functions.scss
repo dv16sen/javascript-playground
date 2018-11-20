@@ -1,0 +1,54 @@
+@function repeat($character, $n){
+    $c: '';
+
+    @for $i from 1 through $n {
+        $c: $c + $character;
+    }
+    
+    @return $c;
+}
+
+/*----------------------------------------
+ * Dark colors
+ *----------------------------------------*/
+@function darkToLight($darkColor, $name: ""){
+    @if $name == black {
+        @return lighten($darkColor, 80%);
+    } @else {
+        @return lighten($darkColor, 41%);
+    }
+}
+
+@function darkHover($darkColor, $name: ""){
+    @if $name == black {
+        @return lighten($darkColor, 5%);
+    } @else {
+        @return darken($darkColor, 5%);
+    }
+}
+
+@function darkToDarker($darkColor){
+    @return darken($darkColor, 25%);
+}
+
+/*----------------------------------------
+ * Light colors
+ *----------------------------------------*/
+@function lightHover($lightColor, $name: ""){
+    @return darken($lightColor, 5%);
+}
+
+@function lightToDark($lightColor, $name: ""){
+    @return darken($lightColor, 10%);
+}
+
+/*----------------------------------------
+ * Glass colors
+ *----------------------------------------*/
+@function glassColor($color){
+    @return rgba($color, .9);
+}
+
+@function glassToLight($color){
+    @return rgba($color, .1);
+}

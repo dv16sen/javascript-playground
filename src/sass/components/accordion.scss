@@ -1,0 +1,8 @@
+.accordion {
+    overflow: hidden;
+    z-index: 2;
+
+    &-toggle {
+        z-index: 2;
+    }
+}

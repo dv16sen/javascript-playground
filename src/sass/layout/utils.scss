@@ -1,0 +1,22 @@
+/*----------------------------------------
+ * Utils
+ *----------------------------------------*/
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.prevent-scroll {
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+@each $name, $query in $mediaQueries {
+    @media (max-width: $query){
+        .prevent-scroll-#{$name} {
+            overflow: hidden;
+            min-height: 100vh;
+        }
+    }
+}

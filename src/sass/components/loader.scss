@@ -1,0 +1,84 @@
+/*----------------------------------------
+ * Loader
+ *----------------------------------------*/
+.loader {
+    border-radius: 50%;
+    animation: loader-spin 1s linear infinite;
+
+    &.inverted {
+        border-color: $primary;
+        border-top-color: transparent;
+    }
+
+    @each $name, $color in $darkColors {
+        &.#{$name} {
+            background-color: initial;
+            border-top-color: $color;
+
+            &.light {
+                border-top-color: darkToLight($color);
+                background-color: initial;
+
+                &.inverted {
+                    border-color: darkToLight($color);
+                    border-top-color: transparent;
+                }
+            }
+
+            &.dark {
+                border-top-color: darkToDarker($color);
+                background-color: initial;
+
+                &.inverted {
+                    border-color: darkToDarker($color);
+                    border-top-color: transparent;
+                }
+            }
+
+            &.inverted {
+                border-color: $color;
+                border-top-color: transparent;
+            }
+        }
+    }
+
+    &-huge {
+        @extend .loader;
+        width: 120px;
+        height: 120px;
+        border: 12px solid $gray;
+        border-top: 12px solid $primary;
+    }
+
+    &-large {
+        @extend .loader;
+        width: 80px;
+        height: 80px;
+        border: 8px solid $gray;
+        border-top: 8px solid $primary;
+    }
+
+    &-medium {
+        @extend .loader;
+        width: 60px;
+        height: 60px;
+        border: 6px solid $gray;
+        border-top: 6px solid $primary;
+    }
+
+    &-small {
+        @extend .loader;
+        width: 40px;
+        height: 40px;
+        border: 4px solid $gray;
+        border-top: 4px solid $primary;
+    }
+
+    &-tiny {
+        @extend .loader;
+        width: 20px;
+        height: 20px;
+        border: 2px solid $gray;
+        border-top: 2px solid $primary;
+    }
+}

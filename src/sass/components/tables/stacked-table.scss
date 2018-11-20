@@ -1,0 +1,50 @@
+/*----------------------------------------
+ * Stacked Table
+ *----------------------------------------*/
+@mixin stackedTable(){
+    border: 1px solid $tableSecondary;
+    border-collapse: separate;
+    border-radius: $divider5;
+    border-spacing: 0;
+    width: 100%;
+    text-align: center;
+
+    &.clickable {
+        @include clickable();
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody {
+        width: auto;
+        display: block;
+    }
+
+    tr:nth-child(2n) td {
+        background-color: #FFF;
+    }
+
+    tr {
+        width: auto;
+        display: block;
+        padding: 0 0 2px 0;
+
+        td:first-child {
+            background: $tablePrimary;
+            font-weight: 700;
+        }
+    }
+
+    td {
+        display: block;
+        width: auto;
+        border: none;
+        padding: $divider5 $divider4;
+    }
+}
+
+.stacked-table {
+    @include stackedTable();
+}

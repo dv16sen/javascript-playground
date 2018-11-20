@@ -1,0 +1,22 @@
+.disabled {
+    cursor: not-allowed;
+    user-select: none;
+}
+
+@each $name, $color in $darkColors {
+    .#{$name}.disabled {
+        background-color: lighten($color, 25%);
+
+        &.light {
+            background-color: $gray;
+            color: #999;
+        }
+    }
+}
+
+@each $name, $color in $lightColors {
+    .#{$name}.disabled {
+        background-color: $gray;
+        color: #888;
+    }
+}

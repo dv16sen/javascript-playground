@@ -1,0 +1,17 @@
+/*----------------------------------------
+ * Inset
+ *----------------------------------------*/
+.inset-list {
+    > .inset {
+        border-bottom: none;
+
+        &:last-child {
+            border-bottom: 1px solid rgba(34,36,38,.15);
+        }
+    }
+}
+
+.inset {
+    border: 1px solid rgba(34,36,38,.15);
+    box-shadow: 0 2px 25px 0 rgba(34,36,38,.05) inset;
+}
