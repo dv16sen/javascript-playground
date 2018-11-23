@@ -1,19 +1,19 @@
 const fs = require("fs");
 
 const getColorsFile = (colors) => (
-`export const colors = [
+`export const colors: string[] = [
 ${colors.all
     .map((color, i) => (`    "${color}"${(i === colors.all.length - 1 ? "" : ",\n")}`))
     .reduce((acc, next) => acc + next)}
 ];
 
-export const darkColors = [
+export const darkColors: string[] = [
 ${colors.dark
     .map((color, i) => (`    "${color}"${(i === colors.dark.length - 1 ? "" : ",\n")}`))
     .reduce((acc, next) => acc + next)}
 ];
 
-export const lightColors = [
+export const lightColors: string[] = [
 ${colors.light
     .map((color, i) => (`    "${color}"${(i === colors.light.length - 1 ? "" : ",\n")}`))
     .reduce((acc, next) => acc + next)}
@@ -51,7 +51,7 @@ module.exports = async () => {
     const colorsFile = getColorsFile(colors);
 
     return new Promise(resolve => {
-        fs.writeFile(`${global.PROJECT_ROOT}/src/services/colors.js`, colorsFile, (err) => {
+        fs.writeFile(`${global.PROJECT_ROOT}/src/services/colors.tsx`, colorsFile, (err) => {
             if(err) throw err;
 
             console.log("Complete!");

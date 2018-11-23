@@ -1,4 +1,4 @@
-export const colors = [
+export const colors: string[] = [
     "white",
     "gray",
     "primary",
@@ -22,7 +22,7 @@ export const colors = [
     "info"
 ];
 
-export const darkColors = [
+export const darkColors: string[] = [
     "primary",
     "secondary",
     "black",
@@ -44,7 +44,7 @@ export const darkColors = [
     "info"
 ];
 
-export const lightColors = [
+export const lightColors: string[] = [
     "white",
     "gray"
 ];

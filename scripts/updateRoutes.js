@@ -13,9 +13,19 @@ import HidingMenu from "../components/HidingMenu";
 import {joinClassNames} from "../services/className";
 import {withRouter} from 'react-router-dom';
 import $ from "jquery";
+import {RouteComponentProps} from "react-router";
 
-class MainMenu extends Component {
-    withoutRouterExtras = ({history, match, staticContext, ...props}) => props;
+interface MainMenuProps extends RouteComponentProps {
+    className?: string
+}
+
+class MainMenu extends Component<MainMenuProps> {
+    withoutRouterExtras = ({
+        history,
+        match,
+        staticContext,
+        ...props
+    }: Partial<RouteComponentProps>) => props;
 
     componentWillUnmount(){
         $("body").removeClass("prevent-scroll-md");
@@ -26,7 +36,7 @@ class MainMenu extends Component {
             className,
             location,
             ...props
-        } = this.withoutRouterExtras(this.props);
+        } = this.props;
         
         return (
             <HidingMenu
@@ -50,16 +60,16 @@ class MainMenu extends Component {
 
                     return changes;
                 }}
-                {...props}
+                {...this.withoutRouterExtras(props)}
             >
                 <h3 className="effectless menu-item">
                     <a href={routes.homePage}>
-                        SCSS Framework
+                        Javascript Playgrounds
                     </a>
                 </h3>
-${pages.length > 1 ? (pages.filter(page => page !== "HomePage.js").map((page, i) => {
-    const href = `routes.${decapitalizeFirstLetter(page).split(".js")[0]}`;
-    const pageName = page.split("Page.js")[0];
+${pages.length > 1 ? (pages.filter(page => page !== "HomePage.tsx").map((page, i) => {
+    const href = `routes.${decapitalizeFirstLetter(page).split(".tsx")[0]}`;
+    const pageName = page.split("Page.tsx")[0];
     const lastPage = i === pages.length - 2;
     const tab = `                `;
     
@@ -82,7 +92,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 ${pages.map((page, i) => {
     const lastPage = i === pages.length - 1;
     
-    return `import ${page.split(".js")[0]} from "./pages/${page.split(".js")[0]}";${
+    return `import ${page.split(".tsx")[0]} from "./pages/${page.split(".tsx")[0]}";${
         lastPage ? "" : "\n"
     }`;
 }).reduce((acc, next) => acc + next)}
@@ -93,8 +103,8 @@ export const Router = () => {
         <BrowserRouter>
             <Fragment>
 ${pages.map((page, i) => {
-    const path = `routes.${decapitalizeFirstLetter(page).split(".js")[0]}`;
-    const component = page.split(".js")[0];
+    const path = `routes.${decapitalizeFirstLetter(page).split(".tsx")[0]}`;
+    const component = page.split(".tsx")[0];
     const lastPage = i === pages.length - 1;
     return `                <Route exact path={${path}} component={${component}}/>${
         lastPage ? "" : "\n"
@@ -109,10 +119,10 @@ ${pages.map((page, i) => {
 const getRoutesFile = (pages) => (
 `export const routes = {
 ${pages.map((page, i) => {
-    if(page === "HomePage.js") return `    homePage: "/",\n`;
+    if(page === "HomePage.tsx") return `    homePage: "/",\n`;
     
     const isLastPage = i === pages.length - 1;
-    const key = decapitalizeFirstLetter(page).split(".js")[0];
+    const key = decapitalizeFirstLetter(page).split(".tsx")[0];
     const value = `/${key.split("Page")[0]}`;
     return `    ${key}: "${value}"${isLastPage ? "" : ",\n"}`;
 }).reduce((acc, next) => acc + next)}
@@ -122,18 +132,18 @@ module.exports = async () => {
     const pages = fs.readdirSync(`${global.PROJECT_ROOT}/src/pages`);
 
     return new Promise(resolve => {
-        fs.writeFile(`${global.PROJECT_ROOT}/src/routes.js`, getRoutesFile(pages), (err) => {
+        fs.writeFile(`${global.PROJECT_ROOT}/src/routes.tsx`, getRoutesFile(pages), (err) => {
             if(err) throw err;
             resolve();
         })
     }).then(() => new Promise(resolve => {
-        fs.writeFile(`${global.PROJECT_ROOT}/src/Router.js`, getRouterFile(pages), (err) => {
+        fs.writeFile(`${global.PROJECT_ROOT}/src/Router.tsx`, getRouterFile(pages), (err) => {
             if(err) throw err;
 
             resolve();
         })
     })).then(() => new Promise(resolve => {
-        fs.writeFile(`${global.PROJECT_ROOT}/src/site-components/MainMenu.js`, getMenu(pages), (err) => {
+        fs.writeFile(`${global.PROJECT_ROOT}/src/site-components/MainMenu.tsx`, getMenu(pages), (err) => {
             if(err) throw err;
 
             console.log("Complete!");

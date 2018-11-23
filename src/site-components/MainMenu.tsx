@@ -55,10 +55,17 @@ class MainMenu extends Component<MainMenuProps> {
             >
                 <h3 className="effectless menu-item">
                     <a href={routes.homePage}>
-                        SCSS Framework
+                        Javascript Playground
                     </a>
                 </h3>
-
+                <a href={routes.decoratorPage} 
+                   className={location.pathname === routes.decoratorPage ? "active" : ""}>
+                    Decorator
+                </a>
+                <a href={routes.hooksPage} 
+                   className={location.pathname === routes.hooksPage ? "active" : ""}>
+                    Hooks
+                </a>
             </HidingMenu>
         );
     }
