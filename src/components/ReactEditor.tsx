@@ -2,8 +2,8 @@ import React, {ComponentProps, FunctionComponent} from "react";
 import {Sandbox, withDependencies } from "react-sandbox-editor";
 
 const ReactSandbox = withDependencies([
-    "https://unpkg.com/react@16.6.3/umd/react.development.js",
-    "https://unpkg.com/react-dom@16.6.0/umd/react-dom.development.js"
+    "https://unpkg.com/react@16.7.0-alpha.2/umd/react.development.js",
+    "https://unpkg.com/react-dom@16.7.0-alpha.2/umd/react-dom.development.js"
 ])(Sandbox);
 
 interface Props extends ComponentProps<"div"> {

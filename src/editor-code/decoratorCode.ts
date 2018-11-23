@@ -1,3 +1,5 @@
+import {render} from "./utils";
+
 export default (
 `//Class Decorator
 const withStyles = (style) => (ChildComponent) => (
@@ -21,7 +23,5 @@ class Container extends React.Component {
     }
 }
 
-ReactDOM.render(
-    <Container>I'm a decorated component</Container>,
-    document.getElementById("root")
-);`);
+${render(`<Container>I'm a decorated component</Container>`)}`
+);
